@@ -1,0 +1,141 @@
+<!-- 1. Write a function that takes a name and a callback, then calls the callback with a greeting. -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Callback Example</title>
+</head>
+<body>
+  <script>
+    // Function that takes a name and a callback
+    function greet(name, callback) {
+      let message = "Hello, " + name + "!";
+      callback(message); // calling the callback with greeting
+    }
+
+    // Callback function
+    function showMessage(msg) {
+      alert(msg); // show greeting in alert
+    }
+
+    // Call the function
+    greet("Lakshit", showMessage);
+  </script>
+</body>
+</html> -->
+
+
+<!-- 2. Create a function that adds two numbers and passes the result to a callback function. -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Callback Add Example</title>
+</head>
+<body>
+  <script>
+    // Function that takes two numbers and a callback
+    function addNumbers(a, b, callback) {
+      let sum = a + b;
+      callback(sum); // pass the result to the callback
+    }
+
+    // Callback function
+    function displayResult(result) {
+      console.log("The sum is: " + result);
+    }
+
+    // Call the function
+    addNumbers(5, 7, displayResult); // Output: The sum is: 12
+  </script>
+</body>
+</html> -->
+
+<!-- 3. Simulate a “download file” operation using setTimeout() and a callback that prints "Download Complete". -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function to simulate downloading a file
+        function downloadFile(callback) {
+            console.log("Downloading file...");
+
+            // Simulate download delay using setTimeout
+            setTimeout(() => {
+                // Call the callback function after "download" is complete
+                callback();
+            }, 3000); // 3 seconds delay
+        }
+
+        // Callback function
+        function downloadComplete() {
+            console.log("Download Complete");
+        }
+
+        // Call the downloadFile function with the callback
+        downloadFile(downloadComplete);
+
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function to simulate downloading a file
+        function downloadFile(progressCallback, completeCallback) {
+            let progress = 0;
+
+            console.log("Starting download...");
+
+            // Function to simulate download progress
+            function downloadStep() {
+                progress += 20; // Increase progress by 20%
+                if (progress < 100) {
+                    progressCallback(progress);
+                    setTimeout(downloadStep, 500); // Next step after 0.5 seconds
+                } else {
+                    progressCallback(100); // Final progress update
+                    completeCallback(); // Call complete callback
+                }
+            }
+
+            // Start the first step
+            setTimeout(downloadStep, 500);
+        }
+
+        // Callback to show progress
+        function showProgress(progress) {
+            console.log(`Download Progress: ${progress}%`);
+        }
+
+        // Callback to indicate download complete
+        function downloadComplete() {
+            console.log("Download Complete!");
+        }
+
+        // Start the simulated download
+        downloadFile(showProgress, downloadComplete);
+
+    </script>
+</body>
+
+</html>
