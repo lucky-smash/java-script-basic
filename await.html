@@ -89,53 +89,103 @@
 </html> -->
 
 
+
+<!-- 4. Write a function that simulates reading data from a server using setTimeout and then passes the data to a callback. -->
+<!-- 
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+      <script>
+        function readingData (callback){
+
+          console.log("Reading Data ......")
+          setTimeout(()=>{
+            const data = "here is your data from server ";
+            callback(data);
+          },3000)
+        }
+
+        function displayData(data){
+          alert("driven data is here :" + data )
+        }
+
+        readingData (displayData)
+      </script>
+</body>
+</html> -->
+
+<!-- 5. Create a small program that shows "Step 1 → Step 2 → Step 3" with delays using nested callbacks (callback hell)..  this question is on hold for now cause it comes under intermediate level and i first doing all easy ones -->
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        // Function to simulate downloading a file
-        function downloadFile(progressCallback, completeCallback) {
-            let progress = 0;
+  <script>
+    function step1(callback) {
+      setTimeout(() => {
+        console.log("Step 1");
+        callback(); // call step2
+      }, 1000);
+    }
 
-            console.log("Starting download...");
+    function step2(callback) {
+      setTimeout(() => {
+        console.log("Step 2");
+        callback(); // call step3
+      }, 1000);
+    }
 
-            // Function to simulate download progress
-            function downloadStep() {
-                progress += 20; // Increase progress by 20%
-                if (progress < 100) {
-                    progressCallback(progress);
-                    setTimeout(downloadStep, 500); // Next step after 0.5 seconds
-                } else {
-                    progressCallback(100); // Final progress update
-                    completeCallback(); // Call complete callback
-                }
-            }
+    function step3() {
+      setTimeout(() => {
+        console.log("Step 3");
+      }, 1000);
+    }
 
-            // Start the first step
-            setTimeout(downloadStep, 500);
-        }
+    // Start the chain
+    step1(() => {
+      step2(() => {
+        step3();
+      });
+    });
+  </script>
 
-        // Callback to show progress
-        function showProgress(progress) {
-            console.log(`Download Progress: ${progress}%`);
-        }
-
-        // Callback to indicate download complete
-        function downloadComplete() {
-            console.log("Download Complete!");
-        }
-
-        // Start the simulated download
-        downloadFile(showProgress, downloadComplete);
-
-    </script>
 </body>
 
-</html>
+</html> -->
+
+<!-- 6. Create a promise that resolves after 2 seconds with the message "Task Complete" and log it using .then(). -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise Example</title>
+</head>
+<body>
+  <script>
+    // Create a promise that resolves after 2 seconds
+    const task = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Task Complete");
+      }, 2000);
+    });
+
+    // Use .then() to handle the resolved value
+    task.then((message) => {
+      console.log(message); // Logs: Task Complete
+    });
+  </script>
+</body>
+</html> -->
